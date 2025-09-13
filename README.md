@@ -55,7 +55,7 @@ A production-ready, feature-complete SAAS starter kit built with Next.js 15, des
 - Smooth animations with Framer Motion
 
 ### 🗄️ **Database**
-- **Neon PostgreSQL** database
+- **PostgreSQL (Supabase recommended)** database
 - Custom database functions
 - User management and analytics
 - Subscription tracking
@@ -81,7 +81,7 @@ Before you begin, ensure you have the following installed:
 
 You'll also need accounts for:
 - [Google Cloud Console](https://console.cloud.google.com/) (for OAuth)
-- [Neon](https://neon.tech/) (for database)
+- PostgreSQL (Supabase recommended)
 - [Stripe](https://stripe.com/) (for payments)
 - [OpenRouter](https://openrouter.ai/) (for AI features)
 
@@ -116,7 +116,7 @@ Fill in your environment variables in `.env.local` (see detailed setup below).
 
 ### 4. Database Setup
 
-1. Create a Neon database (instructions below)
+1. Create a Supabase project (or Neon). See below for Supabase steps.
 2. Run the database initialization script:
 
 ```bash
@@ -133,23 +133,24 @@ Open [http://localhost:3000](http://localhost:3000) to see your application.
 
 ## 🔧 Detailed Setup Guide
 
-### 🗄️ Database Setup (Neon)
+### 🗄️ Database Setup (Supabase recommended)
 
-1. **Create Neon Account**
-   - Go to [neon.tech](https://neon.tech/)
-   - Sign up for a free account
+### 🗄️ Database Setup (Supabase recommended)
+
+1. **Create Supabase Project**
+   - Go to [supabase.com](https://supabase.com/)
    - Create a new project
 
 2. **Get Connection String**
-   - In your Neon dashboard, go to "Connection Details"
-   - Copy the connection string
+   - Settings → Database → Connection string → URI
+   - Use URI with `?sslmode=require`
    - Add it to your `.env.local` as `DATABASE_URL`
-
-3. **Initialize Database**
-   ```bash
-   # The database tables will be created automatically when you first run the app
-   npm run dev
+   - Example:
+   ```env
+   DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@db.xxxxxx.supabase.co:5432/postgres?sslmode=require
    ```
+
+> Note: You can also use Neon (PostgreSQL) as before. The app uses standard Postgres.
 
 ### 🔐 Google OAuth Setup
 
